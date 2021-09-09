@@ -16,6 +16,14 @@ class Counters extends Component {
         ]
     }
 
+    handleResetAll = () => {
+        const counters = this.state.counters.map(c => {
+            c.value = 0;
+            return c;
+        })
+        this.setState({counters});
+    }
+
     handleCounterDelete = counterID => {
         console.log("Counter #" + counterID + " deleted!");
         const counters = this.state.counters.filter(c => c._id !== counterID)
@@ -82,8 +90,11 @@ class Counters extends Component {
     render() {
         return (
              <React.Fragment>
+
+                    
                     <div className="m-3 mb-5">
                         <div className="m-2 mb-3"><img src={this.state.imgURI} width="100px" alt=""/></div>
+                        <button onClick={this.handleResetAll} className="btn btn-primary btn-sm">Reset All</button>
                     </div>
 
                     <div>
