@@ -69,7 +69,7 @@ class App extends Component {
   render() {
     return (
       <React.Fragment>
-        <NavBar/>
+        <NavBar totalCounters={this.state.counters.filter(counter => counter.value > 0).length}/>
         <main className="container">
           <Counters
             imgURI={this.state.imgURI}
