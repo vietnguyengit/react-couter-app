@@ -7,17 +7,11 @@ class Counter extends Component {
         fontWeight: 'bold',
     };
 
-    disableBtnState() {
-        if (this.props.counter.value > 0) return false;
-        return true;
-    }
-
     render() {
         
         return (
             //put elements directly under root div
             <React.Fragment>
-                
                 <div className="ml-4">
                     {this.props.children}
                 </div>
@@ -47,6 +41,11 @@ class Counter extends Component {
                 </div>
             </React.Fragment>
         );
+    }
+
+    disableBtnState() {
+        if (this.props.counter.value > 0) return false;
+        return true;
     }
 
     getBadgeClasses() {
