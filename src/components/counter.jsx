@@ -34,9 +34,15 @@ class Counter extends Component {
     }
 
     render() {
+        console.log(this.props);
         return (
             //put elements directly under root div
             <React.Fragment>
+                
+                <div className="ml-4">
+                    {this.props.children}
+                </div>
+            
                 <div className="m-3">
                     <button className="btn btn-secondary btn-sm ml-2" style={this.styles}
                             onClick={this.handleIncrement}>

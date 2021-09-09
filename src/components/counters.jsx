@@ -4,7 +4,7 @@ import Counter from './counter';
 class Counters extends Component {
     state = {
         counters: [
-            {_id: 1, value: 0},
+            {_id: 1, value: 3},
             {_id: 2, value: 0},
             {_id: 3, value: 0}
         ],
@@ -48,12 +48,14 @@ class Counters extends Component {
     render() {
         return (
              <React.Fragment>
-                    <div className="m-3">
+                    <div className="m-3 mb-5">
                         <div className="m-2 mb-3"><img src={this.state.imgURI} width="100px" alt=""/></div>
                     </div>
 
                     <div>
-                        {this.state.counters.map(counter => <Counter key={counter._id} value={counter.value}></Counter>)}
+                        {this.state.counters.map(counter => <Counter key={counter._id} value={counter.value} id={counter._id}>
+                            <h5>Counter #{counter._id}</h5>
+                        </Counter>)}
                     </div>
 
                     {this.state.tags.length === 0 && <p className="alert alert-secondary mb-0">Submit new tag!</p>}
