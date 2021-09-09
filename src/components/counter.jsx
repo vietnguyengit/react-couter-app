@@ -1,35 +1,35 @@
 import React, { Component } from 'react';
 
 class Counter extends Component {
-
     styles = {
         fontSize: 16,
         fontWeight: 'bold',
     };
 
+    componentDidUpdate(prevProps, prevState) {
+        console.log("prevProps", prevProps);
+        console.log("prevState", prevState);
+    }
+
+    componentWillUnmount() {
+        console.log("Counter - Unmount");
+    }
     
-
     render() {
-        
+        console.log("Counter - rendered")
         const {onDelete, onIncrement, onDecrement, onReset, counter} = this.props;
-
         return (
-
             //put elements directly under root div
             <React.Fragment>
                 <div className="ml-4">
                     {this.props.children}
                 </div>
-            
                 <div className="m-3">
-
                     <button onClick={() => onDelete(this.props.id)} className="btn btn-danger btn-sm p-2">Delete</button>
-
                     <button className="btn btn-secondary btn-sm ml-2" style={this.styles}
                             onClick={() => onIncrement(this.props.counter)}>
                                 +
                     </button>
-                    
                     <button className="btn btn-secondary btn-sm ml-1" style={this.styles}
                             onClick={() => onDecrement(this.props.counter)}
                             disabled={this.disableBtnState()}>

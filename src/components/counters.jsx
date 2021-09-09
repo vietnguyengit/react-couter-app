@@ -28,10 +28,10 @@ class Counters extends Component {
         )
     }
 
-    render() {        
-
+    render() {  
+        
+        console.log("Counters - rendered")
         const {counters, imgURI, onDelete, onIncrement, onDecrement, onReset, onResetAll} = this.props;
-
         return (
 
              <React.Fragment>
@@ -39,7 +39,6 @@ class Counters extends Component {
                         <div className="m-2 mb-3"><img src={imgURI} width="100px" alt=""/></div>
                         <button onClick={onResetAll} className="btn btn-primary btn-sm">Reset All</button>
                     </div>
-
                     <div>
                         {counters.map(counter => 
                         <Counter 
@@ -53,10 +52,8 @@ class Counters extends Component {
                             <h5>Counter #{counter._id}</h5>
                         </Counter>)}
                     </div>
-
                     {this.props.tags.length === 0 && <p className="alert alert-secondary mb-0">Submit new tag!</p>}
                     {this.renderTags()}
-
              </React.Fragment>
         );
     }
