@@ -26,6 +26,34 @@ class Counters extends Component {
         const tags = this.state.tags.filter(t => t._id  !== tag._id);
         this.setState({tags: tags});
     }
+
+    //arrow function
+    //onClick attr: no ()
+    //syntax {state_elemment: this.state.state_element}
+    handleIncrement = counter => {
+        // console.log("clicked");
+        const counters = [...this.state.counters];
+        const index = counters.indexOf(counter);
+        counters[index] = {...counter}
+        counters[index].value++;
+        this.setState({counters});
+    }
+
+    handleDecrement = counter => {
+        const counters = [...this.state.counters];
+        const index = counters.indexOf(counter);
+        counters[index] = {...counter}
+        counters[index].value--;
+        this.setState({counters});
+    }
+
+    handleReset = counter => {
+        const counters = [...this.state.counters];
+        const index = counters.indexOf(counter);
+        counters[index] = {...counter}
+        counters[index].value = 0;
+        this.setState({counters});
+    }
     
     renderTags() {
         if (this.state.tags.length === 0) return <p className="alert alert-warning">There are no tags!</p>;
@@ -59,7 +87,14 @@ class Counters extends Component {
                     </div>
 
                     <div>
-                        {this.state.counters.map(counter => <Counter key={counter._id} value={counter.value} id={counter._id} onDelete={this.handleCounterDelete}>
+                        {this.state.counters.map(counter => <Counter 
+                            key={counter._id} 
+                            counter={counter} 
+                            id={counter._id} 
+                            onDelete={this.handleCounterDelete}
+                            onIncrement={this.handleIncrement}
+                            onDecrement={this.handleDecrement}
+                            onReset={this.handleReset}>
                             <h5>Counter #{counter._id}</h5>
                         </Counter>)}
                     </div>
