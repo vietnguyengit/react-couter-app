@@ -4,18 +4,45 @@ import Counter from './counter';
 class Counters extends Component {
     state = {
         counters: [
-            {id: 1, value: 0},
-            {id: 2, value: 0},
-            {id: 3, value: 0}
+            {_id: 1, value: 0},
+            {_id: 2, value: 0},
+            {_id: 3, value: 0}
         ],
         imgURI: 'http://www.ddmcivil.com.au/wp-content/uploads/2018/02/DDM-Logo-White-Sml.png',
-        tags: ["tag1", "tag2", "tag3"]
+        tags: [
+            {_id: 0, value: "tag1"},
+            {_id: 1, value: "tag2"},
+            {_id: 2, value: "tag3"}
+        ]
     }
 
+    handleTagDelete = tag => {
+        const tags = this.state.tags.filter(t => t._id  !== tag._id);
+        this.setState({tags: tags});
+    }
     
     renderTags() {
         if (this.state.tags.length === 0) return <p className="alert alert-warning">There are no tags!</p>;
-        return <ul className="list-group">{this.state.tags.map(tag => <li key={tag} className="list-group-item">{tag}</li>)}</ul>
+        return (
+            <table className="table">
+                <thead>
+                    <tr>
+                        <th>Value</th>
+                        <th/>
+                    </tr>
+                </thead>
+                <tbody>
+                    {this.state.tags.map(tag =>
+                        <tr>
+                            <td>{tag.value}</td>
+                            <td>
+                                <button onClick={() => this.handleTagDelete(tag)} className="btn btn-danger btn-sm">Delete</button>
+                            </td>
+                        </tr>
+                    )}
+                </tbody>
+            </table>
+        )
     }
     
     render() {
@@ -26,7 +53,7 @@ class Counters extends Component {
                     </div>
 
                     <div>
-                        {this.state.counters.map(counter => <Counter key={counter.id}></Counter>)}
+                        {this.state.counters.map(counter => <Counter key={counter._id} value={counter.value}></Counter>)}
                     </div>
 
                     {this.state.tags.length === 0 && <p className="alert alert-secondary mb-0">Submit new tag!</p>}
