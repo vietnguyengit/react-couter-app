@@ -16,6 +16,12 @@ class Counters extends Component {
         ]
     }
 
+    handleCounterDelete = counter => {
+        console.log("Counter #" + counter._id + " deleted!");
+        const counters = this.state.counters.filter(c => c._id !== counter._id)
+        this.setState({counters: counters});
+    }
+    
     handleTagDelete = tag => {
         const tags = this.state.tags.filter(t => t._id  !== tag._id);
         this.setState({tags: tags});
@@ -53,7 +59,7 @@ class Counters extends Component {
                     </div>
 
                     <div>
-                        {this.state.counters.map(counter => <Counter key={counter._id} value={counter.value} id={counter._id}>
+                        {this.state.counters.map(counter => <Counter key={counter._id} value={counter.value} id={counter._id} onDelete={() => this.handleCounterDelete(counter)}>
                             <h5>Counter #{counter._id}</h5>
                         </Counter>)}
                     </div>
